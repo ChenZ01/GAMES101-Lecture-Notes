@@ -1,0 +1,38 @@
+% \ifx\allfiles\undefined
+
+% \begin{document}
+
+% \else
+% \fi
+
+
+\section{Review of Linear Algebra}
+
+Assume 3-dimensional space. Dot product can be written as:
+
+$$\begin{aligned}
+    &\va\cdot\vb = \va\TT\vb \\
+    &=(x_a\quad y_a\quad z_a)\begin{pmatrix}x_b\\y_b\\z_b\end{pmatrix} \\
+    &=x_ax_b+y_ay_b+z_az_b
+\end{aligned}$$
+
+Cross product can be written as:
+
+$$\begin{aligned}
+    &\va\times\vb = A^*\vb = \underset{\text{dual matrix of}\,\,\va}{\begin{pmatrix}
+        0 & -z_a & y_a \\
+        z_a & 0 & -x_a \\
+        -y_a & x_a & 0
+    \end{pmatrix}}\begin{pmatrix}
+        x_b \\
+        y_b \\
+        z_b
+    \end{pmatrix}=\begin{pmatrix}y_az_b-z_ay_b\\z_ax_b-x_az_b\\x_ay_b-y_ax_b\end{pmatrix}
+\end{aligned}$$
+
+
+
+% \ifx\allfiles\undefined
+% \end{document}
+% \else
+% \fi
