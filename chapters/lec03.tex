@@ -8,6 +8,8 @@
 
 \section{Transformation}
 
+\subsection{Homogeneous Coordinates}
+
 2D point is represented as $(x, y, 1)\TT$. 2D vector is represented as $(x, y, 0)\TT$. This ensures
 
 \begin{itemize}
@@ -18,7 +20,9 @@
 
 We further define $(x, y, w)\TT = (x/w, y/w, 1)\TT, w\ne 0$.
 
-Below are some common 2D transformations under homogeneous coordinates:
+\subsection{2D Transformation}
+
+Below are some common 2D transformations in homogeneous coordinates:
 
 \begin{itemize}
     \item Scale
@@ -40,6 +44,8 @@ Below are some common 2D transformations under homogeneous coordinates:
         0 & 0 & 1
     \end{pmatrix}$$
 \end{itemize}
+
+The rotation matrix is orthogonal, i.e. $R\TT = R^{-1}$.
 
 % \ifx\allfiles\undefined
 % \end{document}

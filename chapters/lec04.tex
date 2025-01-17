@@ -1,0 +1,114 @@
+% \ifx\allfiles\undefined
+
+% \begin{document}
+
+% \else
+% \fi
+
+
+% \section{Transformation}
+\subsection{3D Transformation}
+
+Rotation matrix around $x$, $y$, $z$ axis:
+
+$$R_x(\alpha) = \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & \cos\alpha & -\sin\alpha & 0 \\
+    0 & \sin\alpha & \cos\alpha & 0 \\
+    0 & 0 & 0 & 1
+\end{pmatrix}$$
+
+$$R_y(\alpha) = \begin{pmatrix}
+    \cos\alpha & 0 & \sin\alpha & 0 \\
+    0 & 1 & 0 & 0 \\
+    -\sin\alpha & 0 & \cos\alpha & 0 \\
+    0 & 0 & 0 & 1
+\end{pmatrix}$$
+
+$$R_z(\alpha) = \begin{pmatrix}
+    \cos\alpha & -\sin\alpha & 0 & 0 \\
+    \sin\alpha & \cos\alpha & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    0 & 0 & 0 & 1
+\end{pmatrix}$$
+
+\emph{Rodrigues' rotation formula}: Rotation by angle $\alpha$ around axis $\vn$
+$$R(\vn, \alpha) = \cos\alpha \mathbf{I} + (1 - \cos\alpha)\vn\vn\TT + \sin\alpha\begin{pmatrix}
+    0 & -n_z & n_y \\
+    n_z & 0 & -n_x \\
+    -n_y & n_x & 0
+\end{pmatrix}$$
+
+Define a camera:
+\begin{itemize}
+    \item Position: $\ve$
+    \item Look-at / gaze direction: $\hat g$
+    \item Up direction: $\hat t$
+\end{itemize}
+
+We always transform the camera to
+\begin{itemize}
+    \item the origin
+    \item looking at $-z$ axis
+    \item up at $y$ axis
+\end{itemize}
+
+So the view/camera transformation matrix is $M_{\text{view}} = R_{\text{view}}T_{\text{view}}$, where
+$$T_{\text{view}} = \begin{pmatrix}
+    1 & 0 & 0 & -x_e \\
+    0 & 1 & 0 & -y_e \\
+    0 & 0 & 1 & -z_e \\
+    0 & 0 & 0 & 1
+\end{pmatrix}$$
+and (rotate $\hat g$ to $-z$, $\hat t$ to $y$, $\hat g\times\hat t$ to $x$)
+$$R_{\text{view}} = (R^{-1}_{\text{view}})\TT = 
+    \begin{pmatrix}
+        x_{\hat g\times\hat t} & x_t & x_{-g} & 0\\
+        y_{\hat g\times\hat t} & y_t & y_{-g} & 0\\
+        z_{\hat g\times\hat t} & z_t & z_{-g} & 0\\
+        0 & 0 & 0 & 1
+    \end{pmatrix}\TT
+    = \begin{pmatrix}
+        x_{\hat g\times\hat t} & y_{\hat g\times\hat t} & z_{\hat g\times\hat t} & 0\\
+        x_t & y_t & z_t & 0\\
+        x_{-g} & y_{-g} & z_{-g} & 0\\
+        0 & 0 & 0 & 1
+    \end{pmatrix}$$
+
+\subsection{Orthographic Projection}
+
+\begin{enumerate}
+    \item Center cuboid by translation
+    \item Scale into canonical cube
+\end{enumerate}
+
+$$M_{\text{ortho}} = \begin{pmatrix}
+    \frac{2}{r - l} & 0 & 0 & 0 \\
+    0 & \frac{2}{t - b} & 0 & 0 \\
+    0 & 0 & \frac{2}{n - f} & 0 \\
+    0 & 0 & 0 & 1
+\end{pmatrix}\begin{pmatrix}
+    1 & 0 & 0 & -\frac{r + l}{2} \\
+    0 & 1 & 0 & -\frac{t + b}{2} \\
+    0 & 0 & 1 & -\frac{n + f}{2} \\
+    0 & 0 & 0 & 1
+\end{pmatrix}$$
+
+\subsection{Perspective Projection}
+
+\begin{enumerate}
+    \item Squish the frustum into a cuboid
+    \item Do orthographic projection
+\end{enumerate}
+
+$$M_{\text{pers->ortho}} = \begin{pmatrix}
+    n & 0 & 0 & 0 \\
+    0 & n & 0 & 0 \\
+    0 & 0 & n + f & -nf \\
+    0 & 0 & 1 & 0
+\end{pmatrix}$$
+
+% \ifx\allfiles\undefined
+% \end{document}
+% \else
+% \fi
