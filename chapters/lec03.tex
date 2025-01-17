@@ -6,10 +6,40 @@
 % \fi
 
 
-\section{SECTION_NAME_HERE}
+\section{Transformation}
 
+2D point is represented as $(x, y, 1)\TT$. 2D vector is represented as $(x, y, 0)\TT$. This ensures
 
+\begin{itemize}
+    \item Vector + Vector = Vector
+    \item Point $-$ Point = Vector
+    \item Point + Vector = Point
+\end{itemize}
 
+We further define $(x, y, w)\TT = (x/w, y/w, 1)\TT, w\ne 0$.
+
+Below are some common 2D transformations under homogeneous coordinates:
+
+\begin{itemize}
+    \item Scale
+    $$S(s_x, s_y) = \begin{pmatrix}
+        s_x & 0 & 0 \\
+        0 & s_y & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}$$
+    \item Rotation
+    $$R(\alpha) = \begin{pmatrix}
+        \cos\alpha & -\sin\alpha & 0 \\
+        \sin\alpha & \cos\alpha & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}$$
+    \item Translation
+    $$T(t_x, t_y) = \begin{pmatrix}
+        1 & 0 & t_x \\
+        0 & 1 & t_y \\
+        0 & 0 & 1
+    \end{pmatrix}$$
+\end{itemize}
 
 % \ifx\allfiles\undefined
 % \end{document}
